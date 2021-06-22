@@ -1,4 +1,5 @@
-import { BrowserRouter, Switch, Rout } from "react-router-dom";
+import GlobalStyle from "../GlobalStyle";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Login from './Login'
 import SignUp from './SignUp'
 import Home from './Home'
@@ -8,23 +9,24 @@ import CashOut from './CashOut'
 export default function App() {
     return (
         <>
+        <GlobalStyle />
             <BrowserRouter>
                 <Switch>
-                    <Rout path="/">
+                    <Route path="/">
                         <Login />
-                    </Rout>
-                    <Rout path="/signup">
+                    </Route>
+                    <Route path="/signup">
                         <SignUp />
-                    </Rout>
-                    <Rout path="/home">
+                    </Route>
+                    <Route path="/home">
                         <Home />
-                    </Rout>
-                    <Rout path="/cashin">
+                    </Route>
+                    <Route path="/cashin">
                         <CashIn />
-                    </Rout>
-                    <Rout path="/cashout">
+                    </Route>
+                    <Route path="/cashout">
                         <CashOut />
-                    </Rout>
+                    </Route>
                 </Switch>
             </BrowserRouter>
         </>
