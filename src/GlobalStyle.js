@@ -68,6 +68,7 @@ a {
 
 body {
     font-family: 'Raleway', sans-serif;
+    color: #fff;
     background-color: #8F6AC0;
 }
 `;

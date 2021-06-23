@@ -12,19 +12,19 @@ export default function App() {
         <GlobalStyle />
             <BrowserRouter>
                 <Switch>
-                    <Route path="/">
+                    <Route path="/" exact>
                         <Login />
                     </Route>
-                    <Route path="/signup">
+                    <Route path="/signup" exact>
                         <SignUp />
                     </Route>
-                    <Route path="/home">
+                    <Route path="/home" exact>
                         <Home />
                     </Route>
-                    <Route path="/cashin">
+                    <Route path="/cashin" exact>
                         <CashIn />
                     </Route>
-                    <Route path="/cashout">
+                    <Route path="/cashout" exact>
                         <CashOut />
                     </Route>
                 </Switch>
