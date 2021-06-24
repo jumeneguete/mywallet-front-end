@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 export default function Button({children, type, disabled}) {
     return (
-        <ButtonStyle type={type}>{children}</ButtonStyle>
+        <ButtonStyle type={type} disabled={disabled}>{children} </ButtonStyle>
     );
 }
 
