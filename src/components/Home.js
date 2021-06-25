@@ -1,35 +1,73 @@
+import axios from 'axios';
+import { useContext, useEffect, useState } from 'react';
 import { ExitOutline, AddCircleOutline, RemoveCircleOutline } from 'react-ionicons'
 import styled from 'styled-components';
+import UserContext from './contexts/UserContext';
+import dayjs from 'dayjs';
+import { Link } from 'react-router-dom';
 
 export default function Home() {
+    const { user } = useContext(UserContext);
+    const [userData, setUserData] = useState(null);
+    const [registers, setRegisters] = useState(null);
+
+    useEffect(() => {
+        const config = {
+            headers: {
+                Authorization: `Bearer ${user}`
+            }
+        };
+
+        const result = axios.get("http://localhost:4000/home", config);
+        result.then(response => {
+            setUserData(response.data[0].user);
+            setRegisters(response.data[0].registers)
+        }).catch(error => {
+            console.log(error)
+            alert("Erro ao carregar dados!")
+        });
+
+    }, [])
     return (
         <>
             <Header>
-                <p>Olá, Fulano</p>
+                <p>Olá, {userData?.name}</p>
                 <ExitOutline color={'#fff'} height="35px" width="26px" />
             </Header>
             <Statement>
-                <NoContent>Não há registros de <br/> entrada ou saída</NoContent>
-                <WithContent>
-                    <Register>
-                        <div>
-                            <Date>22/06</Date>
-                            <p>Compras churrasco</p>
-                        </div>
-                        <Values>-3456,00</Values>
-                    </Register>
-                </WithContent>
+                {registers === null ?
+                    <NoContent registers={registers}>Não há registros de <br /> entrada ou saída</NoContent> :
+                    registers.map(r => (
+                        <WithContent registers={registers}>
+                            <Register>
+                                <div>
+                                    <Date>{dayjs(r.date).format("DD/MM")}</Date>
+                                    <p>{r.description}</p>
+                                </div>
+                                <Values value={r.value}>{r.value}</Values>
+                            </Register>
+                        </WithContent>
+                    ))
+                }
             </Statement>
 
             <Footer>
-                <CashInButton>
-                    <AddCircleOutline color={'#fff'} height="25px" width="25px" />
-                    <p>Nova <br />entrada</p>
-                </CashInButton>
-                <CashOutButton>
-                    <RemoveCircleOutline color={'#fff'} height="25px" width="25px" />
-                    <p>Nova <br />saída</p>
-                </CashOutButton>
+                <div>
+                    <Link to={"/cashin"}>
+                        <CashInButton>
+                            <AddCircleOutline color={'#fff'} height="25px" width="25px" />
+                            <p>Nova <br />entrada</p>
+                        </CashInButton>
+                    </Link>
+                </div>
+                <div>
+                    <Link to={"/cashout"}>
+                        <CashOutButton>
+                            <RemoveCircleOutline color={'#fff'} height="25px" width="25px" />
+                            <p>Nova <br />saída</p>
+                        </CashOutButton>
+                    </Link>
+                </div>
             </Footer>
         </>
     )
@@ -52,21 +90,27 @@ const Statement = styled.div`
     overflow: hidden;
     border-radius: 5px;
     background-color: #fff;
-    /* display: flex;
-    justify-content: center;  //MUDAR QUANDO TIVER VALORES display, justify e align
-    align-items: center; */
+    overflow-y: auto;
+    display: ${props => props.registers ? "" : ""};
+    justify-content: ${props => props.registers ? "" : "center"};
+    align-items: ${props => props.registers ? "" : "center"}; 
+
+    &::-webkit-scrollbar {
+    display: none;
+}
 `;
 
 const NoContent = styled.div`
     font-size: 20px;
     color: #868686;
     text-align: center;
-    display: none;
+    display: ${props => props.registers ? "none" : "block"};
 `;
 
 const WithContent = styled.div`
     font-size: 15px;    
     color: #000;
+    display: ${props => props.registers ? "block" : "none"};
 `;
 
 const Register = styled.div`
@@ -94,7 +138,7 @@ const Date = styled.div`
 `;
 
 const Values = styled.div`
-   //color: red or green
+   color: ${props => props.value >= 0 ? "green" : "red"};
 `;
 
 const Footer = styled.div`
@@ -109,10 +153,13 @@ const Footer = styled.div`
     left: 20px;
     right: 20px;
     z-index: 1;
+
+    & > div{
+        width: 48%;
+    }
 `;
 
 const CashInButton = styled.div`
-    width: 48%;
     height: 110px;
     border-radius: 5px;
     padding: 10px;
@@ -123,7 +170,6 @@ const CashInButton = styled.div`
 `;
 
 const CashOutButton = styled.div`
-    width: 48%;
     height: 110px;
     border-radius: 5px;
     padding: 10px;

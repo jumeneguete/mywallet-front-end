@@ -11,7 +11,7 @@ export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
-    const {setUser} = useContext(UserContext);
+    const {setUser, user} = useContext(UserContext);
     const history = useHistory();
 
     function login(e){
@@ -23,7 +23,6 @@ export default function Login() {
         const request = axios.post("http://localhost:4000/", body);
         setLoading(true);
         request.then(response => {
-            console.log(response.data);
             setUser(response.data)
             history.push("/home");
         })
