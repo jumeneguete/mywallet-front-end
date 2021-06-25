@@ -1,6 +1,6 @@
 import Input from "./Input";
 import Button from "./Button";
-import styled from "styled-components";
+import {Container, Back} from "./Styles";
 import { Link, useHistory } from "react-router-dom";
 import UserContext from './contexts/UserContext';
 import { useContext, useState } from "react";
@@ -52,32 +52,3 @@ export default function CashOut() {
         </>
     )
 };
-
-const Container = styled.div`
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-
-
-    p {
-        font-size: 26px;
-        font-weight: 700;
-        margin: 20px;
-    }
-
-    form {
-        display: flex;
-        flex-direction: column;
-    }
-`;
-
-const Back = styled.div`
-    width: 80%;
-    font-size: 18px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    color: #fff;
-    margin: 0 auto;
-    display: flex;
-    justify-content: flex-end;
-`;
