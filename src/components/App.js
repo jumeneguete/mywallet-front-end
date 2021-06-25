@@ -9,7 +9,8 @@ import { useState } from "react";
 import UserContext from "./contexts/UserContext";
 
 export default function App() {
-    const [user, setUser] = useState("");
+    const localLogin = localStorage.getItem("loginSaved");
+    const [user, setUser] = useState(localLogin && JSON.parse(localLogin));
 
     return (
         <>

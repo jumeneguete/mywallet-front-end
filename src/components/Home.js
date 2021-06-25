@@ -4,37 +4,52 @@ import { ExitOutline, AddCircleOutline, RemoveCircleOutline } from 'react-ionico
 import styled from 'styled-components';
 import UserContext from './contexts/UserContext';
 import dayjs from 'dayjs';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 export default function Home() {
-    const { user } = useContext(UserContext);
+    const { user, setUser } = useContext(UserContext);
     const [userData, setUserData] = useState(null);
     const [registers, setRegisters] = useState(null);
+    const [total, setTotal] = useState(null);
+    const history = useHistory();
+
+    const config = {headers: {Authorization: `Bearer ${user}`}};
 
     useEffect(() => {
-        const config = {
-            headers: {
-                Authorization: `Bearer ${user}`
-            }
-        };
-
+            
         const result = axios.get("http://localhost:4000/home", config);
         result.then(response => {
             setUserData(response.data[0].user);
-            setRegisters(response.data[0].registers)
-        }).catch(error => {
-            console.log(error)
-            alert("Erro ao carregar dados!")
+            setRegisters(response.data[0].registers);
+            balance(response.data[0].registers);
+        })
+
+    }, []);
+
+    function balance (value){
+        let sum = 0;
+        value.forEach(r => {
+            sum += r.value;
         });
 
-    }, [])
+        setTotal(sum);
+    }
+
+    function logout(){
+        axios.post(`http://localhost:4000/logout`, {}, config);
+        
+        localStorage.removeItem("loginSaved");
+        setUser(null);
+        history.push("/");
+    }
+
     return (
         <>
             <Header>
                 <p>Olá, {userData?.name}</p>
-                <ExitOutline color={'#fff'} height="35px" width="26px" />
+                <ExitOutline onClick={logout} color={'#fff'} height="35px" width="26px" />
             </Header>
-            <Statement>
+            <Statement registers={registers}>
                 {registers === null ?
                     <NoContent registers={registers}>Não há registros de <br /> entrada ou saída</NoContent> :
                     registers.map(r => (
@@ -44,12 +59,13 @@ export default function Home() {
                                     <Date>{dayjs(r.date).format("DD/MM")}</Date>
                                     <p>{r.description}</p>
                                 </div>
-                                <Values value={r.value}>{r.value}</Values>
+                                <Values value={r.value}>{(r.value/100).toFixed(2)}</Values>
                             </Register>
                         </WithContent>
                     ))
                 }
             </Statement>
+            <FooterStatement registers={registers} total={total}>Total <span>{(total/100).toFixed(2)}</span></FooterStatement>
 
             <Footer>
                 <div>
@@ -85,13 +101,14 @@ const Header = styled.div`
 
 const Statement = styled.div`
     width: 90%;
-    height: 410px;
+    height: ${props => props.registers ? "379px" : "410px"};
     margin: 0 auto;
     overflow: hidden;
-    border-radius: 5px;
+    border: none;
+    border-radius: ${props => props.registers ? "5px 5px 0 0" : "5px"};
     background-color: #fff;
     overflow-y: auto;
-    display: ${props => props.registers ? "" : ""};
+    display: ${props => props.registers ? "" : "flex"};
     justify-content: ${props => props.registers ? "" : "center"};
     align-items: ${props => props.registers ? "" : "center"}; 
 
@@ -111,6 +128,26 @@ const WithContent = styled.div`
     font-size: 15px;    
     color: #000;
     display: ${props => props.registers ? "block" : "none"};
+
+    &:last-child{
+        margin-bottom: 30px;
+    }
+`;
+
+const FooterStatement = styled.div`
+    width: 90%;
+    margin: -2px auto 0 auto;
+    border-radius: 0 0 5px 5px;
+     font-size: 18px;
+     color: #000;
+     padding: 10px 15px;
+     background-color: #fff;
+     display: ${props => props.registers ? "flex" : "none"};
+     justify-content: ${props => props.registers ? "space-between" : "none"};
+
+     span {
+        color: ${props => props.total >= 0 ? "green" : "red"};
+     }
 `;
 
 const Register = styled.div`

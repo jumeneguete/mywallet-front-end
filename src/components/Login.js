@@ -24,6 +24,8 @@ export default function Login() {
         setLoading(true);
         request.then(response => {
             setUser(response.data)
+            const lastLogin = JSON.stringify(response.data);
+            localStorage.setItem("loginSaved", lastLogin);
             history.push("/home");
         })
 
