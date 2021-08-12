@@ -29,7 +29,7 @@ export default function SignUp() {
         if (password !== confPassword) return alert("Os campos Senha e Confirme Senha devem ser identicos");
 
         const body = { name, email, password };
-        const request = axios.post("http://localhost:4000/signup", body);
+        const request = axios.post(`${process.env.REACT_APP_HOST}/signup`, body);
         setLoading(true);
         request.then(() => { history.push("/") }).catch((err) => {
             alert("Algo deu errado!");

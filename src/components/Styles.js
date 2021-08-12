@@ -200,6 +200,53 @@ const DeleteButton = styled.div`
     align-items: center;
 `;
 
+const ButtonStyle = styled.button`
+    width: 350px;
+    height: 46px;
+    margin: 10px auto 40px auto;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #fff;
+    background-color: #A778D7;
+    text-align: center;
+
+        &:focus{
+            box-shadow: 0 0 0 0;
+            outline: 0;
+        }
+`;
+
+const InputStyle = styled.input`
+    width: 350px;
+    padding-left: 10px;
+    font-size: 18px;
+    font-family: 'Raleway', sans-serif;
+    margin: 10px auto;
+    height: 58px;
+    border: none;
+    border-radius: 5px;
+
+        &::placeholder{
+            font-family: 'Raleway', sans-serif;
+            font-size: 18px;
+            color: #000;
+        }
+        &:focus{
+            box-shadow: 0 0 0 0;
+            outline: 0;
+        }
+`;
 
 
-export { Main, Logo, Header, Statement, NoContent, WithContent, FooterStatement, Register, Date, Values, Footer, CashInButton, CashOutButton, Container, Back, DeleteButton }
+export {
+    Main, Logo,
+    Header, Statement, NoContent, WithContent, FooterStatement, Register, Date, Values,
+    Footer, CashInButton, CashOutButton,
+    Container, Back,
+    DeleteButton,
+    ButtonStyle,
+    InputStyle
+}

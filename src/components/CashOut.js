@@ -29,7 +29,7 @@ export default function CashOut() {
         const value = Number(number).toFixed(2) * 100;
         const body = { value, description };
 
-        const request = axios.post(`http://localhost:4000/cashout`, body, config);
+        const request = axios.post(`${process.env.REACT_APP_HOST}/cashout`, body, config);
         setLoading(true);
         request.then(() => {
             setAmount("");

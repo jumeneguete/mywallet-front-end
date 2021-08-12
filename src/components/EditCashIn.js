@@ -21,7 +21,7 @@ export default function EditCashIn() {
     useEffect(()=>{
         if (!user) return history.push("/");
         
-        const result = axios.get(`http://localhost:4000/register/${id}`, config);
+        const result = axios.get(`${process.env.REACT_APP_HOST}/register/${id}`, config);
         result.then(response => {
             setAmount(response.data.value/100);
             setDescription(response.data.description);
@@ -36,7 +36,7 @@ export default function EditCashIn() {
         const value = Number(amount).toFixed(2) * 100;
         const body = { value , description };
         
-        const request = axios.post(`http://localhost:4000/updatecashin/${id}`, body, config);
+        const request = axios.post(`${process.env.REACT_APP_HOST}/updatecashin/${id}`, body, config);
         setLoading(true);
         request.then(() => {
             setAmount("");
@@ -51,7 +51,7 @@ export default function EditCashIn() {
     }
 
     function deleteRegister(){
-        const result = axios.delete(`http://localhost:4000/delete/${id}`, config);
+        const result = axios.delete(`${process.env.REACT_APP_HOST}/delete/${id}`, config);
         setLoadingDelete(true);
         result.then( () => {
             reloadRegisters();
@@ -61,7 +61,7 @@ export default function EditCashIn() {
     }
 
     function reloadRegisters(){
-        axios.get("http://localhost:4000/home", config);
+        axios.get(`${process.env.REACT_APP_HOST}/home`, config);
     }
 
 
