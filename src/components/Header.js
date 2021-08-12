@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useContext } from 'react';
 import { ExitOutline } from 'react-ionicons'
-import { HeaderStyle } from "./Styles";
+import { HeaderStyle } from "./commons/Styles";
 import UserContext from './contexts/UserContext';
 import { useHistory } from 'react-router-dom';
 

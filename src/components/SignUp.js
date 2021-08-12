@@ -1,9 +1,9 @@
-import Input from "./Input";
-import Button from "./Button";
-import { Main, Logo } from "./Styles";
+import Input from "./commons/Input";
+import Button from "./commons/Button";
+import { Main, Logo } from "./commons/Styles";
 import { Link, useHistory } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
-import ThreeDots from "./ThreeDots";
+import ThreeDots from "./commons/ThreeDots";
 import axios from "axios";
 import UserContext from "./contexts/UserContext";
 

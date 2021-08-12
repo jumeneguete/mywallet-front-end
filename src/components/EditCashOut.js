@@ -1,11 +1,11 @@
-import Input from "./Input";
-import Button from "./Button";
-import {Container, Back, DeleteButton} from "./Styles";
+import Input from "./commons/Input";
+import Button from "./commons/Button";
+import {Container, Back, DeleteButton} from "./commons/Styles";
 import { Link, useHistory } from "react-router-dom";
 import UserContext from './contexts/UserContext';
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import ThreeDots from "./ThreeDots";
+import ThreeDots from "./commons/ThreeDots";
 import { useParams } from "react-router-dom";
 
 export default function EditCashOut() {

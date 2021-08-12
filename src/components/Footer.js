@@ -1,5 +1,5 @@
 import { AddCircleOutline, RemoveCircleOutline } from 'react-ionicons'
-import { FooterStyle, CashInButton, CashOutButton } from "./Styles";
+import { FooterStyle, CashInButton, CashOutButton } from "./commons/Styles";
 import { Link } from 'react-router-dom';
 
 export default function Home() {

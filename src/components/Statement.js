@@ -1,4 +1,4 @@
-import { StatementStyle, NoContent, WithContent, FooterStatement, Register, Date, Values } from "./Styles";
+import { StatementStyle, NoContent, WithContent, FooterStatement, Register, Date, Values } from "./commons/Styles";
 import dayjs from 'dayjs';
 import { useHistory } from 'react-router-dom';
 
