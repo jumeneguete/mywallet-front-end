@@ -3,7 +3,7 @@ import Button from "./Button";
 import {Container, Back} from "./Styles";
 import { Link, useHistory } from "react-router-dom";
 import UserContext from './contexts/UserContext';
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import ThreeDots from "./ThreeDots";
 
@@ -12,10 +12,14 @@ export default function CashOut() {
     const [amount, setAmount] = useState("");
     const [description, setDescription] = useState("");
     const [loading, setLoading] = useState(false);
-    const history = useHistory()
+    const history = useHistory();
+
+    useEffect(()=>{
+        if (!user) return history.push("/"); 
+    },[]);
 
     function addNewRegister(e) {
-        e.preventDefault();
+        e.preventDefault();   
 
         const config = { headers: { Authorization: `Bearer ${user}` } };
 

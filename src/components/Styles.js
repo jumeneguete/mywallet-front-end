@@ -183,7 +183,23 @@ const Back = styled.div`
     justify-content: flex-end;
 `;
 
+const DeleteButton = styled.div`
+    width: 350px;
+    height: 46px;
+    margin: -25px auto 40px auto;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #fff;
+    background-color: rgba(234, 27, 2, 0.5);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
 
 
 
-export { Main, Logo, Header, Statement, NoContent, WithContent, FooterStatement, Register, Date, Values, Footer, CashInButton, CashOutButton, Container, Back }
+export { Main, Logo, Header, Statement, NoContent, WithContent, FooterStatement, Register, Date, Values, Footer, CashInButton, CashOutButton, Container, Back, DeleteButton }

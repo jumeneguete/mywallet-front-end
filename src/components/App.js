@@ -7,6 +7,8 @@ import CashIn from './CashIn'
 import CashOut from './CashOut'
 import { useState } from "react";
 import UserContext from "./contexts/UserContext";
+import EditCashIn from "./EditCashIn";
+import EditCashOut from "./EditCashOut";
 
 export default function App() {
     const localLogin = localStorage.getItem("loginSaved");
@@ -32,6 +34,12 @@ export default function App() {
                         </Route>
                         <Route path="/cashout" exact>
                             <CashOut />
+                        </Route>
+                        <Route path="/cashin/:id" exact>
+                            <EditCashIn />
+                        </Route>
+                        <Route path="/cashout/:id" exact>
+                            <EditCashOut />
                         </Route>
                     </UserContext.Provider>
                 </Switch>

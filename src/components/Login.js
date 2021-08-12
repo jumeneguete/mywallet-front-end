@@ -2,7 +2,7 @@ import Input from "./Input";
 import Button from "./Button";
 import { Main, Logo } from "./Styles";
 import { Link, useHistory } from "react-router-dom";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import UserContext from "./contexts/UserContext";
 import ThreeDots from "./ThreeDots";
@@ -11,15 +11,22 @@ export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
-    const {setUser, user} = useContext(UserContext);
+    const { setUser, user } = useContext(UserContext);
     const history = useHistory();
 
-    function login(e){
+    useEffect(() => {
+        if (user) {
+            history.push("/home");
+        }
+    }, []);
+
+
+    function login(e) {
         e.preventDefault();
 
         if (!email || !password) return alert("Preencha todos os campos!");
 
-        const body = {email, password}
+        const body = { email, password }
         const request = axios.post("http://localhost:4000/", body);
         setLoading(true);
         request.then(response => {

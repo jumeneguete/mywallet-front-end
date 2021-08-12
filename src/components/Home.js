@@ -16,7 +16,8 @@ export default function Home() {
     const config = {headers: {Authorization: `Bearer ${user}`}};
 
     useEffect(() => {
-            
+        if (!user) return history.push("/");    
+
         const result = axios.get("http://localhost:4000/home", config);
         result.then(response => {
             setUserData(response.data[0].user);
@@ -43,6 +44,14 @@ export default function Home() {
         history.push("/");
     }
 
+    function updateRegister(id, value){
+        if(value > 0){
+            history.push(`/cashin/${id}`);
+        } else {
+            history.push(`/cashout/${id}`);
+        }
+    }
+
     return (
         <>
             <Header>
@@ -53,8 +62,8 @@ export default function Home() {
                 {registers === null ?
                     <NoContent registers={registers}>Não há registros de <br /> entrada ou saída</NoContent> :
                     registers.map(r => (
-                        <WithContent registers={registers}>
-                            <Register>
+                        <WithContent  onClick={() => updateRegister(r.id, r.value)} key={r.id} registers={registers}>
+                            <Register >
                                 <div>
                                     <Date>{dayjs(r.date).format("DD/MM")}</Date>
                                     <p>{r.description}</p>

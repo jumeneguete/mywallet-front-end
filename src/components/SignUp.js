@@ -2,9 +2,10 @@ import Input from "./Input";
 import Button from "./Button";
 import { Main, Logo } from "./Styles";
 import { Link, useHistory } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ThreeDots from "./ThreeDots";
 import axios from "axios";
+import UserContext from "./contexts/UserContext";
 
 export default function SignUp() {
     const [name, setName] = useState("");
@@ -13,6 +14,13 @@ export default function SignUp() {
     const [confPassword, setConfPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const history = useHistory();
+    const { user } = useContext(UserContext);
+
+    useEffect(() => {
+        if (user) {
+            history.push("/home");
+        }
+    }, []); 
 
     function register(e) {
         e.preventDefault();
