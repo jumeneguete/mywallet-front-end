@@ -31,9 +31,8 @@ export default function SignUp() {
         const body = { name, email, password };
         const request = axios.post(`${process.env.REACT_APP_HOST}/signup`, body);
         setLoading(true);
-        request.then(() => { history.push("/") }).catch((err) => {
+        request.then(() => { history.push("/") }).catch(() => {
             alert("Algo deu errado!");
-            console.log(err)
             setLoading(false);
         });
 

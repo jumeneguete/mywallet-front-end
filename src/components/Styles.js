@@ -29,7 +29,7 @@ const Logo = styled.h1`
 `;
 
 
-const Header = styled.div`
+const HeaderStyle = styled.div`
     margin: 20px 30px 20px 25px;
     font-size: 26px;
     font-weight: 700;
@@ -38,7 +38,7 @@ const Header = styled.div`
     align-items: center;
 `;
 
-const Statement = styled.div`
+const StatementStyle = styled.div`
     width: 90%;
     height: ${props => props.registers ? "379px" : "410px"};
     margin: 0 auto;
@@ -117,7 +117,7 @@ const Values = styled.div`
    color: ${props => props.value >= 0 ? "green" : "red"};
 `;
 
-const Footer = styled.div`
+const FooterStyle = styled.div`
     width: 90%;
     margin: 0 auto;
     display: flex;
@@ -243,8 +243,8 @@ const InputStyle = styled.input`
 
 export {
     Main, Logo,
-    Header, Statement, NoContent, WithContent, FooterStatement, Register, Date, Values,
-    Footer, CashInButton, CashOutButton,
+    HeaderStyle, StatementStyle, NoContent, WithContent, FooterStatement, Register, Date, Values,
+    FooterStyle, CashInButton, CashOutButton,
     Container, Back,
     DeleteButton,
     ButtonStyle,
