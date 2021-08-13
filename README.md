@@ -1,4 +1,4 @@
-<h1 align="center">📄 MyWallet</h1>
+<h1 align="center">💰 MyWallet</h1>
 
 MyWallet is an application that came to help their users to keep tracking their incomes and outcomes!! It is a digital Wallet! <br/>
 In this application users can add their incomes and outcomes with a brief description and check their total amount left in real time!
