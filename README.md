@@ -1,21 +1,25 @@
 <h1 align="center">📄 MyWallet</h1>
 
-RepoProvas came to help students to find old exams from Chemistry course in one place and no longer have hunt it in the university or even spend lots of money with photocopies!! <br/>
-In this application students can upload an exam saved online as pdf and search old exams by subjects ou by teachers!
+MyWallet is an application that came to help their users to keep tracking their incomes and outcomes!! It is a digital Wallet! <br/>
+In this application users can add their incomes and outcomes with a brief description and check their total amount left in real time!
+It is an easy and simple way to organise finances with no stress!
 
-<p align="center"><img width="600px" src="/assets/mywallet.gif" /></p>
+<p align="center"><img width="400px" src="/assets/my_wallet.gif" /></p>
 
 
 
 
 ### 🔹🔹About
 
-This is an web application where people can send a old exam and search for old exams by teacher or by subject. Below are the implemented features:
+This is an web application where people can add their incomes and expenses and keep it on track. Below are the implemented features:
 
-- Exam search by Subject
-- Exam search by Teacher
-- Required fiels to fill to send an exam
-- Successfully page when a sent in done
+- Sign Up
+- Sign In
+- Home page showing the updated statement
+- Add income
+- Add outcome
+- Edit or delete income
+- Edit or delete outcome
 
 ### 🔹🔹Technologies
 - React.js
@@ -23,14 +27,15 @@ This is an web application where people can send a old exam and search for old e
 - Styled-components
 - Axios
 - <a href="https://www.npmjs.com/package/dayjs" target="_blank">Dayjs</a>
-- <a href="https://www.npmjs.com/package/joi" target="_blank">Joi</a>
-- API from https://github.com/jumeneguete/repo-provas-back
+- <a href="https://www.npmjs.com/package/react-ionicons" target="_blank">Ion-Icons</a>
+- <a href="https://www.npmjs.com/package/react-loader-spinner" target="_blank">Loader Spinner</a>
+- API from https://github.com/jumeneguete/mywallet-back-end
 
 ### 🔹🔹How to run
 
 1. Clone this repository
-2. Clone the back-end repository at https://github.com/jumeneguete/repo-provas-back
-3. Follow instructions to run back-end at https://github.com/jumeneguete/repo-provas-back
+2. Clone the back-end repository at https://github.com/jumeneguete/mywallet-back-end
+3. Follow instructions to run back-end at https://github.com/jumeneguete/mywallet-back-end
 4. Install dependencies
 ```bash
 npm i
