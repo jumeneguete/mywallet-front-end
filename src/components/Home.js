@@ -18,7 +18,7 @@ export default function Home() {
     useEffect(() => {
         if (!user) return history.push("/");    
 
-        const result = axios.get(`${process.env.REACT_APP_HOST}/home`, config);
+        const result = axios.get(`${process.env.REACT_APP_HOST}/register`, config);
         result.then(response => {
             setUserData(response.data[0].user);
             setRegisters(response.data[0].registers);

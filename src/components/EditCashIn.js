@@ -61,7 +61,7 @@ export default function EditCashIn() {
     }
 
     function reloadRegisters(){
-        axios.get(`${process.env.REACT_APP_HOST}/home`, config);
+        axios.get(`${process.env.REACT_APP_HOST}/register`, config);
     }
 
 

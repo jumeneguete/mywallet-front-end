@@ -11,7 +11,7 @@ export default function Statement({registers, total}) {
         } else {
             history.push(`/cashout/${id}`);
         }
-    }
+    };
 
     return (
         <>            
